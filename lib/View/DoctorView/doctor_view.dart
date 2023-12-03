@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../Controller/bloc/patient_form_bloc/patient_form_bloc.dart';
-import '../../Model/LabTestModel.dart';
-import 'Component/DoctorRecordBox.dart';
-import 'LabRequisitionFormPage.dart';
+import '../../Model/lab_test_model.dart';
+import 'Component/doctor_record_box.dart';
 
 class DoctorView extends StatefulWidget {
   const DoctorView({super.key,required this.title});
@@ -29,10 +26,19 @@ class _DoctorViewState extends State<DoctorView> {
       body: Container(
         width: screenWidth,
         color: Colors.grey.shade100,
-        child: model.length == 0
-            ? Center(
-                child: Text("No Record Found"),
-              )
+        child: model.isEmpty
+            ? Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 100,
+                  height: 100,
+                  child: Image.asset('assets/no_record.png',
+                  fit: BoxFit.cover,)),
+                const SizedBox(height: 10,),
+                const Text("No Record Found"),
+              ],
+            )
             : ListView.builder(
               shrinkWrap: true,
                 itemCount: model.length,
@@ -64,7 +70,6 @@ class _DoctorViewState extends State<DoctorView> {
   }
   List<LabTestModel> model = [];
   callback(LabTestModel data) {
-    print("CallBack Called");
     setState(() {
       model.add(data);
     });

@@ -7,6 +7,7 @@ final class LabTestDataInitial extends LabTestDataState {}
 
 final class SubmittingLabTestData extends LabTestDataState {}
 
+// ignore: must_be_immutable
 final class LabTestDataWasSubmitted extends LabTestDataState {
   LabTestModel labTestModel;
   LabTestDataWasSubmitted(this.labTestModel);

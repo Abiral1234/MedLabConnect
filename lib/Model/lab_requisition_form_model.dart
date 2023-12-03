@@ -1,3 +1,4 @@
+// ignore: file_names
 class LabRequisitionFormModel {
   String patientName;
   int patientAge;

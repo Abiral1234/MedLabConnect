@@ -6,7 +6,7 @@ void main() {
 // ignore: must_be_immutable
 class MyApp extends StatelessWidget {
   final AppRouter appRouter;
-  MyApp({super.key,required this.appRouter});
+  const MyApp({super.key,required this.appRouter});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'MedLab Connect',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Color(0XFF87CEEB),
+          seedColor: const Color(0XFF87CEEB),
         ),
         useMaterial3: true,
         fontFamily: "Poppins",

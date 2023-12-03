@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../Controller/bloc/doctor_data_bloc/doctor_data_bloc_bloc.dart';
-import '../../Controller/bloc/lab_test_bloc/lab_test_data_bloc.dart';
 import '../../Controller/bloc/patient_form_bloc/patient_form_bloc.dart';
-import '../../Model/LabRequisitionForm.dart';
-import '../LabView/LabTestPage.dart';
 
+// ignore: must_be_immutable
 class LabRequisitionForm extends StatefulWidget {
   Function callback;
   LabRequisitionForm({super.key, required this.callback});
@@ -36,13 +32,6 @@ class _LabRequisitionFormState extends State<LabRequisitionForm> {
   }
 
   @override
-  void initState() {
-    print('initialize');
-    // TODO: implement initState
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double physicalScreenWidth =
@@ -65,10 +54,10 @@ class _LabRequisitionFormState extends State<LabRequisitionForm> {
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          leading: BackButton(
+          leading: const BackButton(
             color: Colors.white,
           ),
-          title: Text(
+          title: const Text(
             "Lab Requisition Form",
             style: TextStyle(
                 color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600),
@@ -84,7 +73,7 @@ class _LabRequisitionFormState extends State<LabRequisitionForm> {
                 TextFormField(
                   focusNode: _focusNode1,
                   controller: patientName,
-                  decoration: InputDecoration(labelText: 'Patient’s name:'),
+                  decoration: const InputDecoration(labelText: 'Patient’s name:'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter patient’s name';
@@ -95,11 +84,11 @@ class _LabRequisitionFormState extends State<LabRequisitionForm> {
                     _moveToNextField(_focusNode1, _focusNode2);
                   },
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 TextFormField(
                   focusNode: _focusNode2,
                   controller: patientAge,
-                  decoration: InputDecoration(labelText: 'Patient’s age:'),
+                  decoration: const InputDecoration(labelText: 'Patient’s age:'),
                   keyboardType: TextInputType.number,
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   validator: (value) {
@@ -120,11 +109,11 @@ class _LabRequisitionFormState extends State<LabRequisitionForm> {
                     _moveToNextField(_focusNode2, _focusNode3);
                   },
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 TextFormField(
                   focusNode: _focusNode3,
                   controller: patientAddress,
-                  decoration: InputDecoration(labelText: 'Patient’s address:'),
+                  decoration: const InputDecoration(labelText: 'Patient’s address:'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter patient’s address';
@@ -135,11 +124,11 @@ class _LabRequisitionFormState extends State<LabRequisitionForm> {
                     _moveToNextField(_focusNode3, _focusNode4);
                   },
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 TextFormField(
                   focusNode: _focusNode4,
                   controller: laboratoryTest,
-                  decoration: InputDecoration(labelText: 'Laboratory test:'),
+                  decoration: const InputDecoration(labelText: 'Laboratory test:'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter laboratory test';
@@ -151,18 +140,17 @@ class _LabRequisitionFormState extends State<LabRequisitionForm> {
                     //  _moveToNextField(_focusNode3, _focusNode4);
                   },
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 TextFormField(
                   readOnly: true,
                   initialValue:
                       "${currentDate.year}-${(currentDate.month)}-${currentDate.day}",
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: "Lab order date:",
                   ),
-                  validator: (value) {},
                 ),
-                SizedBox(height: 25.0),
-                Container(
+                const SizedBox(height: 25.0),
+                SizedBox(
                   width: physicalScreenWidth,
                   child: ElevatedButton(onPressed: () {
                     if (_formKey.currentState?.validate() ?? false) {
@@ -178,12 +166,12 @@ class _LabRequisitionFormState extends State<LabRequisitionForm> {
                   }, child: BlocBuilder<PatientFormBloc, PatientFormState>(
                     builder: (context, state) {
                       if (state is SendingPatientForm) {
-                        return Container(
+                        return const SizedBox(
                             width: 20,
                             height: 20,
                             child: CircularProgressIndicator());
                       } else {
-                        return Text('Submit');
+                        return const Text('Submit');
                       }
                     },
                   )),

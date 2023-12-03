@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../Controller/bloc/lab_test_bloc/lab_test_data_bloc.dart';
-import '../../Model/LabRequisitionForm.dart';
-import '../../Model/LabTestModel.dart';
+import '../../Model/lab_requisition_form_model.dart';
 
+// ignore: must_be_immutable
 class LabTestPage extends StatefulWidget {
   LabRequisitionFormModel patientDataModel;
   Function callback;
@@ -49,10 +48,10 @@ class _LabTestPageState extends State<LabTestPage> {
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          leading: BackButton(
+          leading: const BackButton(
             color: Colors.white,
           ),
-          title: Text(
+          title: const Text(
             "Lab Test",
             style: TextStyle(
                 color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600),
@@ -80,36 +79,22 @@ class _LabTestPageState extends State<LabTestPage> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Patient’s name : ' +
-                                  widget.patientDataModel.patientName),
-                              SizedBox(height: 5),
-                              Text('Patient’s age : ' +
-                                  widget.patientDataModel.patientAge
-                                      .toString() +
-                                  ' years'),
-                              SizedBox(height: 5),
-                              Text('Patient’s address : ' +
-                                  widget.patientDataModel.patientAddress),
-                              SizedBox(height: 5),
-                              Text('Laboratory test : ' +
-                                  widget.patientDataModel.laboratoryTest),
-                              SizedBox(height: 5),
-                              Text('Lab order date : ' +
-                                  widget.patientDataModel.labOrderDate.year.toString()
-                                  +'-'+
-                                  widget.patientDataModel.labOrderDate.month.toString()
-                                  +'-'+
-                                  widget.patientDataModel.labOrderDate.day.toString()
-
-                                      .toString()
-                                  ),
+                              Text('Patient’s name : ${widget.patientDataModel.patientName}'),
+                              const SizedBox(height: 5),
+                              Text('Patient’s age : ${widget.patientDataModel.patientAge} years'),
+                              const SizedBox(height: 5),
+                              Text('Patient’s address : ${widget.patientDataModel.patientAddress}'),
+                              const SizedBox(height: 5),
+                              Text('Laboratory test : ${widget.patientDataModel.laboratoryTest}'),
+                              const SizedBox(height: 5),
+                              Text('Lab order date : ${widget.patientDataModel.labOrderDate.year}-${widget.patientDataModel.labOrderDate.month}-${widget.patientDataModel.labOrderDate.day}'),
                             ]),
                       ),
                     ),
                     TextFormField(
                       focusNode: _focusNode1,
                       controller: testresult,
-                      decoration: InputDecoration(labelText: 'Test result:'),
+                      decoration: const InputDecoration(labelText: 'Test result:'),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter test result';
@@ -120,12 +105,12 @@ class _LabTestPageState extends State<LabTestPage> {
                         _moveToNextField(_focusNode1, _focusNode2);
                       },
                     ),
-                    SizedBox(height: 16.0),
+                    const SizedBox(height: 16.0),
                     TextFormField(
                       focusNode: _focusNode2,
                       controller: referenceRange,
                       decoration:
-                          InputDecoration(labelText: 'Reference range:'),
+                          const InputDecoration(labelText: 'Reference range:'),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter reference range';
@@ -137,8 +122,8 @@ class _LabTestPageState extends State<LabTestPage> {
                         //  _moveToNextField(_focusNode3, _focusNode4);
                       },
                     ),
-                    SizedBox(height: 25.0),
-                    Container(
+                    const SizedBox(height: 25.0),
+                    SizedBox(
                       width: physicalScreenWidth,
                       child: ElevatedButton(
                         onPressed: () {
@@ -159,13 +144,13 @@ class _LabTestPageState extends State<LabTestPage> {
                         child:  BlocBuilder<LabTestDataBloc, LabTestDataState>(
                                 builder: (context, state) {
                                   if(state is SubmittingLabTestData){
-                                  return Container(
+                                  return const SizedBox(
                                       width: 20,
                                       height: 20,
                                       child: CircularProgressIndicator());
                                   }
                                   else{
-                                    return Text('Submit');
+                                    return const Text('Submit');
                                   }
                                 },
                               )

@@ -3,6 +3,7 @@ part of 'patient_form_bloc.dart';
 @immutable
 sealed class PatientFormEvent {}
 
+// ignore: must_be_immutable
 class PatientFormSubmitted extends PatientFormEvent{
   String patientName;
   int patientAge;

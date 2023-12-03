@@ -3,6 +3,7 @@ part of 'lab_test_data_bloc.dart';
 @immutable
 sealed class LabTestDataEvent {}
 
+// ignore: must_be_immutable
 class LabTestDataSubmitted extends LabTestDataEvent{
   String patientName;
   int patientAge;

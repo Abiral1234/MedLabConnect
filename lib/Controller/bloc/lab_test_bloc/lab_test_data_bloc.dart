@@ -1,14 +1,14 @@
+// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
-import 'package:medlab_connect/Model/LabTestModel.dart';
+import 'package:medlab_connect/Model/lab_test_model.dart';
+// ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
-
 part 'lab_test_data_event.dart';
 part 'lab_test_data_state.dart';
 
 class LabTestDataBloc extends Bloc<LabTestDataEvent, LabTestDataState> {
   LabTestDataBloc() : super(LabTestDataInitial()) {
     on<LabTestDataEvent>((event, emit) {
-      // TODO: implement event handler
     });
     on<LabTestDataSubmitted>((event, emit) async{
       emit(SubmittingLabTestData());
@@ -20,11 +20,9 @@ class LabTestDataBloc extends Bloc<LabTestDataEvent, LabTestDataState> {
         labOrderDate: event.labOrderDate,
         testResult: event.testResult,
         referenceRange: event.referenceRange);
-       await Future.delayed(Duration(seconds: 2), () {
+       await Future.delayed(const Duration(seconds: 2), () {
          emit(LabTestDataWasSubmitted(model));
       });
-
-      // TODO: implement event handler
     });
   }
 }

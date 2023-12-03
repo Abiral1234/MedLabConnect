@@ -1,6 +1,7 @@
-
+// ignore: file_names
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class DoctorRecord extends StatelessWidget {
   int index;
   String patientName;
@@ -25,9 +26,8 @@ class DoctorRecord extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+      padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
       child: Container(
         height: 260,
         width: screenWidth,
@@ -38,27 +38,25 @@ class DoctorRecord extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Id :#${index}"),
-                SizedBox(height: 5),
-                Text('Patient’s name :' + patientName),
-                SizedBox(height: 5),
-                Text('Patient’s age: ' + patientAge.toString() + ' years'),
-                SizedBox(height: 5),
-                Text('Patient’s address:' + patientAddress),
-                SizedBox(height: 5),
-                Text('Lab Test: ' + laboratoryTest),
-                SizedBox(height: 5),
-                Text('Test Result: ' + testResult),
-                SizedBox(height: 5),
-                Text('Range Reference: ' + rangeReference),
-                SizedBox(height: 5),
-                Text(labOrderDate.year.toString()
-                +'-' + labOrderDate.month.toString() 
-                +'-'+ labOrderDate.day.toString(),
-                style: TextStyle(color: Colors.grey),),
+                Text("Id :#$index"),
+                const SizedBox(height: 5),
+                Text('Patient’s name : $patientName'),
+                const SizedBox(height: 5),
+                Text('Patient’s age: ${patientAge.toString()} years'),
+                const SizedBox(height: 5),
+                Text('Patient’s address: $patientAddress'),
+                const SizedBox(height: 5),
+                Text('Lab Test: $laboratoryTest'),
+                const SizedBox(height: 5),
+                Text('Test Result: $testResult'),
+                const SizedBox(height: 5),
+                Text('Range Reference: $rangeReference'),
+                const SizedBox(height: 5),
+                Text('Date: ${labOrderDate.year.toString()}-${labOrderDate.month.toString()}-${labOrderDate.day.toString()}',
+                style: const TextStyle(color: Colors.grey),),
               ]),
         ),
       ),
